@@ -33,7 +33,7 @@ def tmp_dir():
     return st.session_state.tmpdir
 
 def mark_success(msg):
-    st.success("Correct " + msg)
+    st.success("   " + msg)
 
 def path_with_suffix(basename: str, suffix: str):
     d = tmp_dir()
@@ -835,9 +835,9 @@ with tabs[2]:
             mark_success("CORE validation files generated.")
             c1, c2 = st.columns(2)
             with c1:
-                st.download_button(" Download cleaned_CORE.xlsx", data=open(p_clean, "rb").read(), file_name="cleaned_CORE.xlsx")
+                st.download_button("📥 Download cleaned_CORE.xlsx", data=open(p_clean, "rb").read(), file_name="cleaned_CORE.xlsx")
             with c2:
-                st.download_button(" Download annotated_CORE.xlsx", data=open(p_annot, "rb").read(), file_name="annotated_CORE.xlsx")
+                st.download_button("📥 Download annotated_CORE.xlsx", data=open(p_annot, "rb").read(), file_name="annotated_CORE.xlsx")
 
 # ------------------------ ECOLI ------------------------
 with tabs[3]:
@@ -856,9 +856,9 @@ with tabs[3]:
             mark_success("ECOLI validation files generated.")
             c1, c2 = st.columns(2)
             with c1:
-                st.download_button(" Download cleaned_ECOLI.xlsx", data=open(p_clean, "rb").read(), file_name="cleaned_ECOLI.xlsx")
+                st.download_button("  Download cleaned_ECOLI.xlsx", data=open(p_clean, "rb").read(), file_name="cleaned_ECOLI.xlsx")
             with c2:
-                st.download_button(" Download annotated_ECOLI.xlsx", data=open(p_annot, "rb").read(), file_name="annotated_ECOLI.xlsx")
+                st.download_button("  Download annotated_ECOLI.xlsx", data=open(p_annot, "rb").read(), file_name="annotated_ECOLI.xlsx")
 
 # ------------------------ ADVANCED ------------------------
 with tabs[4]:
@@ -877,9 +877,9 @@ with tabs[4]:
             mark_success("ADVANCED validation files generated.")
             c1, c2 = st.columns(2)
             with c1:
-                st.download_button("Download cleaned_ADVANCED.xlsx", data=open(p_clean, "rb").read(), file_name="cleaned_ADVANCED.xlsx")
+                st.download_button(" Download cleaned_ADVANCED.xlsx", data=open(p_clean, "rb").read(), file_name="cleaned_ADVANCED.xlsx")
             with c2:
-                st.download_button("Download annotated_ADVANCED.xlsx", data=open(p_annot, "rb").read(), file_name="annotated_ADVANCED.xlsx")
+                st.download_button(" Download annotated_ADVANCED.xlsx", data=open(p_annot, "rb").read(), file_name="annotated_ADVANCED.xlsx")
 
 # ------------------------ RIPARIAN ------------------------
 with tabs[5]:
@@ -973,7 +973,7 @@ with tabs[6]:
 
 # ------------------------ IQR ------------------------
 with tabs[7]:
-    st.header(" Outlier Cleaner (IQR)")
+    st.header("🧹 Outlier Cleaner (IQR)")
     st.caption("Set per-column outliers to NaN using IQR bounds (does not drop rows; metadata stays intact).")
     src = first_available("df_final_combined", "df_adv_clean", "df_ecoli_clean", "df_general_clean", "df_original")
     if src is None:
@@ -994,9 +994,9 @@ with tabs[7]:
                 st.success(" IQR cleaning done. Downloads below:")
                 c1, c2 = st.columns(2)
                 with c1:
-                    st.download_button("Download IQR-cleaned Excel", data=open(p_clean, "rb").read(), file_name=os.path.basename(p_clean))
+                    st.download_button(" Download IQR-cleaned Excel", data=open(p_clean, "rb").read(), file_name=os.path.basename(p_clean))
                 with c2:
-                    st.download_button("Download IQR bounds/report (CSV)", data=open(p_report, "rb").read(), file_name=os.path.basename(p_report), mime="text/csv")
+                    st.download_button(" Download IQR bounds/report (CSV)", data=open(p_report, "rb").read(), file_name=os.path.basename(p_report), mime="text/csv")
                 with st.expander("Preview (first 20 rows)"): st.dataframe(cleaned.head(20))
                 with st.expander("Report preview"): st.dataframe(report)
 
@@ -1007,6 +1007,6 @@ with tabs[8]:
     guide_filename_on_disk = "Validation_Rules_for_Parameters.pdf"
     if os.path.exists(guide_filename_on_disk):
         with open(guide_filename_on_disk, "rb") as f:
-            st.download_button(label="📄 Download Validation Guide (PDF)", data=f.read(), file_name="Validation_Rules_for_Parameters.pdf", mime="application/pdf")
+            st.download_button(label=" Download Validation Guide (PDF)", data=f.read(), file_name="Validation_Rules_for_Parameters.pdf", mime="application/pdf")
     else:
         st.info("Place 'Validation_Rules_for_Parameters.pdf' next to the app to enable this download.")
